@@ -71,4 +71,13 @@ public class CarDAOImpl implements CarDAO {
 		return list;
 	}
 
+	@Override
+	public List<Car> findByOwner(String ownerName) {
+		Session session = entityManager.unwrap(Session.class);
+		Query query = session.createQuery("from Car c where c.owner like :ownerName", Car.class);
+		query.setParameter("ownerName", "%" + ownerName +"%");
+		List<Car> list = query.getResultList();
+		return list;
+	}
+
 }

@@ -78,7 +78,7 @@ public class CarRestController {
 	}
 	
 	@GetMapping("/cars/searchName/{carName}")
-	public List<Car> findAllFindByName(@PathVariable String carName){
+	public List<Car> findAllByName(@PathVariable String carName){
 		List<Car> theCar = carService.findByName(carName);
 		if(theCar == null) {
 			throw new RuntimeException("Car Not Found");
@@ -86,4 +86,12 @@ public class CarRestController {
 		return theCar;			
 	}
 	
+	@GetMapping("/cars/searchOwner/{carOwner}")
+	public List<Car> findAllByOwner(@PathVariable String carOwner){
+		List<Car> theCar = carService.findByOwner(carOwner);
+		if(theCar == null) {
+			throw new RuntimeException("Car Not Found");
+		}
+		return theCar;			
+	}
 }

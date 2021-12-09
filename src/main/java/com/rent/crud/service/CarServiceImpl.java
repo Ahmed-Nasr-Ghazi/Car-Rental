@@ -59,4 +59,10 @@ public class CarServiceImpl implements CarService{
 
 	}
 
+	@Override
+	public List<Car> findByOwner(String ownerName) {
+		return carDAO.findByOwner(ownerName);
+
+	}
+
 }
