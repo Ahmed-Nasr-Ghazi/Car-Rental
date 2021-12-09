@@ -53,4 +53,10 @@ public class CarServiceImpl implements CarService{
 		return carDAO.sortByModel();
 	}
 
+	@Override
+	public List<Car> findByName(String carName) {
+		return carDAO.findByName(carName);
+
+	}
+
 }

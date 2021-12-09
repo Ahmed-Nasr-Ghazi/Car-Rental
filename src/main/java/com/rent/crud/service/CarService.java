@@ -17,5 +17,7 @@ public List<Car> findAll();
 	public List<Car> sortByName();
 
 	public List<Car> sortByModel();
+
+	public List<Car> findByName(String carName);
 	
 }

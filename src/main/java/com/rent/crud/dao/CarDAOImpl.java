@@ -62,4 +62,13 @@ public class CarDAOImpl implements CarDAO {
 		return list;
 	}
 
+	@Override
+	public List<Car> findByName(String carName) {
+		Session session = entityManager.unwrap(Session.class);
+		Query query = session.createQuery("from Car c where c.name like :carName", Car.class);
+		query.setParameter("carName", "%" + carName +"%");
+		List<Car> list = query.getResultList();
+		return list;
+	}
+
 }

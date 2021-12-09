@@ -77,4 +77,13 @@ public class CarRestController {
 		
 	}
 	
+	@GetMapping("/cars/searchName/{carName}")
+	public List<Car> findAllFindByName(@PathVariable String carName){
+		List<Car> theCar = carService.findByName(carName);
+		if(theCar == null) {
+			throw new RuntimeException("Car Not Found");
+		}
+		return theCar;			
+	}
+	
 }

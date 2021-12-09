@@ -17,4 +17,6 @@ public interface CarDAO {
 	public List<Car> sortByName();
 
 	public List<Car> sortByModel();
+
+	public List<Car> findByName(String carName);
 }
