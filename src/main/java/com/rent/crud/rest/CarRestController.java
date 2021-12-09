@@ -71,6 +71,10 @@ public class CarRestController {
 		
 	}
 	
-	
+	@GetMapping("/cars/sortModel")
+	public List<Car> findAllSortByModel(){
+		return carService.sortByModel();
+		
+	}
 	
 }

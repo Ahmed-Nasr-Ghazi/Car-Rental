@@ -15,4 +15,6 @@ public interface CarDAO {
 	public void deleteById(int theId);
 
 	public List<Car> sortByName();
+
+	public List<Car> sortByModel();
 }

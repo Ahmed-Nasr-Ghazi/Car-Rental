@@ -48,4 +48,9 @@ public class CarServiceImpl implements CarService{
 		return carDAO.sortByName();
 	}
 
+	@Override
+	public List<Car> sortByModel() {
+		return carDAO.sortByModel();
+	}
+
 }

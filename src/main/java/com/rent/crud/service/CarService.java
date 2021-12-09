@@ -15,5 +15,7 @@ public List<Car> findAll();
 	public void deleteById(int theId);
 
 	public List<Car> sortByName();
+
+	public List<Car> sortByModel();
 	
 }

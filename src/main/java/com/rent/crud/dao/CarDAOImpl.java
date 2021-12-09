@@ -54,4 +54,12 @@ public class CarDAOImpl implements CarDAO {
 		return list;
 	}
 
+	@Override
+	public List<Car> sortByModel() {
+		Session session = entityManager.unwrap(Session.class);
+		Query query = session.createQuery("from Car order by model DESC", Car.class);
+		List<Car> list = query.getResultList();
+		return list;
+	}
+
 }
