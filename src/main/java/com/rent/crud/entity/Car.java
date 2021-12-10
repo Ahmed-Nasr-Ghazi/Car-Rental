@@ -33,7 +33,7 @@ public class Car {
 	@Column(name="owner")
 	private String owner;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
+	//@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name="hide_me")
 	private String hideMe;
 
