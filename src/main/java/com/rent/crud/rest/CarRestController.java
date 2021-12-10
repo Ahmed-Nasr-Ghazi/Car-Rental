@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rent.crud.dao.CarDAO;
 import com.rent.crud.entity.Car;
+import com.rent.crud.exception.CarNotFoundException;
 import com.rent.crud.service.CarService;
 
 @RestController
@@ -34,20 +35,28 @@ public class CarRestController {
 	public Car findById(@PathVariable int carId) {
 		Car theCar = carService.findById(carId);
 		if(theCar == null) {
-			throw new RuntimeException("Car Not Found");
+			throw new CarNotFoundException("Car Not Found with id - "+ carId);
 		}
 		return theCar;	
 	}
 	
 	@PostMapping("/cars")
-	public Car addCar(@RequestBody Car theCar) {
+	public Car addCar(@RequestBody Car theCar) throws Exception {
+		int carModel = theCar.getModel();
+		if(carModel > 2022 || carModel < 2000) {
+			throw new Exception("Car model " + theCar.getModel() + " is out of date");
+		}
 		theCar.setId(0); //to force a save of new item
 		carService.save(theCar);
 		return theCar; 
 	}
 	
 	@PutMapping("/cars")
-	public Car updateCar(@RequestBody Car theCar) { 
+	public Car updateCar(@RequestBody Car theCar) throws Exception { 
+		int carModel = theCar.getModel();
+		if(carModel > 2022 || carModel < 2000) {
+			throw new Exception("Car model " + theCar.getModel() + " is out of date");
+		}
 		carService.save(theCar);
 		return theCar;
 	}
@@ -57,7 +66,7 @@ public class CarRestController {
 		
 		Car tempCar = carService.findById(carId);
 		if(tempCar == null) {
-			throw new RuntimeException("Car Not Found");
+			throw new CarNotFoundException("Car Not Found with id - "+ carId);
 		}
 		
 		carService.deleteById(carId);
@@ -81,7 +90,7 @@ public class CarRestController {
 	public List<Car> findAllByName(@PathVariable String carName){
 		List<Car> theCar = carService.findByName(carName);
 		if(theCar == null) {
-			throw new RuntimeException("Car Not Found");
+			throw new CarNotFoundException("Car Not Found with name " + carName);
 		}
 		return theCar;			
 	}
@@ -90,7 +99,7 @@ public class CarRestController {
 	public List<Car> findAllByOwner(@PathVariable String carOwner){
 		List<Car> theCar = carService.findByOwner(carOwner);
 		if(theCar == null) {
-			throw new RuntimeException("Car Not Found");
+			throw new CarNotFoundException("Car Not Found with owner " + carOwner);
 		}
 		return theCar;			
 	}
